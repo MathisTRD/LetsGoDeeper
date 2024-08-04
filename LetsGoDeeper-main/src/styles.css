@@ -1,0 +1,276 @@
+/* Define color and font variables */
+:root {
+  --main-dark-color: #111111; /* Very Dark Gray */
+  --accent-color: #392935; /* Dark Purple */
+  --text-color: #847b7b; /* Light Gray */
+}
+
+* {
+  touch-action: manipulation;
+}
+
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "PT Serif", serif;
+  background-color: var(--main-dark-color);
+  color: #d3d3d3;
+  text-align: center;
+}
+
+/* Title Styles */
+.title {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#pretitle {
+  font-size: 3rem;
+  position: absolute;
+  top: -2rem;
+  left: -3rem;
+  width: 10rem;
+  color: var(--accent-color);
+  text-shadow: 0 0 5px var(--accent-color);
+}
+
+#maintitle {
+  font-size: 9rem;
+  animation: glowPulse 3s alternate infinite;
+  cursor: pointer;
+}
+
+/* Game Selector Styles */
+#gameselector {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#gameselector.show {
+  display: flex;
+  opacity: 1;
+  animation: fadeInUp 2s forwards;
+}
+
+/* Shared Button Styles */
+.button, #gameselector button, #nextButton {
+  background-color: var(--accent-color);
+  border: none;
+  color: white;
+  font-family: "PT Serif", serif;
+  font-size: 1.2rem; /* Use rem for better scalability */
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  width: 12rem; /* Set a fixed width for all buttons */
+  text-align: center; /* Center text horizontally */
+}
+
+.button:hover, #gameselector button:hover, #nextButton:hover {
+  background-color: #4a3f4b; /* Slightly lighter shade */
+  transform: scale(1.05);
+}
+
+.button:active, #gameselector button:active, #nextButton:active {
+  transform: scale(1.1);
+  background-color: #635a64;
+}
+
+/* Specific styles for #nextButton */
+#nextButton {
+  display: none;
+  position: fixed;
+  bottom: 5%; /* Adjust this value to position the button close to the question */
+}
+
+/* Question Container Styles */
+#questions h2 {
+  color: var(--accent-color);
+  display: flex;
+  font-size: 5em;
+  margin-bottom: 1rem;
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  text-shadow: 0 0 5px var(--accent-color);
+}
+
+#questions p {
+  display: flex;
+  font-size: 6.5em;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 3s forwards;
+}
+
+.move-up {
+  animation: goUp 2s ease-in forwards !important;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    text-shadow: 0 0 10px var(--text-color);
+  }
+  100% {
+    text-shadow: 0 0 15px var(--accent-color);
+  }
+}
+
+@keyframes goUp {
+  0% {
+    transform: translateY(0);
+    opacity: 100;
+  }
+  100% {
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(1000px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  #pretitle {
+    font-size: 2rem;
+    top: -2rem;
+    left: -2rem;
+    width: 8rem;
+  }
+
+  #maintitle {
+    font-size: 6rem;
+  }
+
+  #gameselector {
+    gap: 1rem;
+  }
+
+  #gameselector button {
+    font-size: 1rem;
+    width: 10rem; /* Adjust width for smaller screens */
+  }
+
+  #questions p {
+    font-size: 4rem;
+  }
+
+  #questions h2 {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #pretitle {
+    font-size: 1.5rem;
+    top: -2rem;
+    left: -1.5rem;
+    width: 6rem;
+  }
+
+  #maintitle {
+    font-size: 4rem;
+  }
+
+  #gameselector {
+    gap: 1rem;
+  }
+
+  #gameselector button {
+    font-size: 0.9rem;
+    width: 8rem; /* Adjust width for smaller screens */
+  }
+
+  #questions p {
+    font-size: 3rem;
+  }
+
+  #questions h2 {
+    font-size: 4rem;
+  }
+
+  #nextButton {
+    bottom: 5rem;
+    width: 10rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #pretitle {
+    font-size: 2rem;
+    top: -1.5rem;
+    left: -1rem;
+    width: 6rem;
+  }
+
+  #maintitle {
+    font-size: 5rem;
+  }
+
+  #gameselector {
+    gap: 0.5rem;
+  }
+
+  #gameselector button {
+    font-size: 0.8rem;
+    width: 6rem; /* Adjust width for smaller screens */
+  }
+
+  #questions p {
+    font-size: 2rem;
+  }
+
+  #questions h2 {
+    font-size: 3rem;
+  }
+
+  #nextButton {
+    width: 8rem;
+    font-size: 0.8rem;
+  }
+}
